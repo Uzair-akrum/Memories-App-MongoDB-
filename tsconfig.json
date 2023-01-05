@@ -1,0 +1,30 @@
+{
+    "compilerOptions": {
+       "target": "es6",
+       "module": "CommonJS",  
+"moduleResolution": "Node",
+"esModuleInterop": true,
+      "declaration": true,
+       "sourceMap": true,
+      "outDir": "./dist",
+      "baseUrl": "./src",
+      "types": ["node"],
+      "paths": {
+        "@root/*":["*"],
+        "@config/*":["config/*"],
+        "@types/*":["types/*"],
+        
+      }
+     
+    },
+    "ts-node": {
+        "esm": true
+    },
+    
+    "include": [
+      "./src/*"
+    ],
+    "exclude": [
+      "tests/*"
+    ]
+  }
