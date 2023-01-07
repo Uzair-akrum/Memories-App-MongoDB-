@@ -1,14 +1,16 @@
 import { Request, Response } from "express";
 import response from "@root/utils/response";
-import { IResult } from "@root/types/user";
+import { IResult, IUser } from "@root/types/user";
 import { IError } from "@root/types/error";
 import IQuery from "@root/types/query";
+import { IPost, IUserPost } from "@root/types/post";
+import { model } from "mongoose";
 const paginate = () => {
   return async (req: Request, res: Response) => {
     const query: IQuery = req.query as unknown as IQuery;
     const page = parseInt(query.page);
     const limit = parseInt(query.limit);
-    const model = res.locals;
+    const model = res.locals  ;
     const startIndex = (page - 1) * limit;
 
     const results: IResult = {};

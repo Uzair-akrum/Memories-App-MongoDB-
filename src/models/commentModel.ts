@@ -1,10 +1,12 @@
-import mongoose from "mongoose";
+import mongoose  from "mongoose";
 import User from "./userModel";
 import Post from "./postModel";
 import { IError } from "../types/error";
+import { IComment } from "@root/types/comment";
+
 const ObjectId = mongoose.Types.ObjectId;
 
-const commentSchema = new mongoose.Schema(
+const commentSchema = new mongoose.Schema<IComment>(
   {
     commentText: {
       type: String,

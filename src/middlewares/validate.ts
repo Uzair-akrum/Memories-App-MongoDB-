@@ -5,15 +5,17 @@ import { IError } from "@root/types/error";
 import { parseForm } from "@root/utils/parseForm";
 import { IForm } from "@root/types/post";
 import { IUser } from "@root/types/user";
+import Joi from "joi";
+import IQuery from "@root/types/query";
 const validate =
-  (schema: any, type?: string) =>
+  (schema: Joi.Schema, type?: string) =>
   async (req: ICustomSchemaReq, res: Response, next: NextFunction) => {
     if (req.method == "DELETE") {
       next();
       return;
     }
     let body: IForm | IUser = req.body;
-    const query = req.query;
+    const query: IQuery = req.query;
     if (type == "post") {
       body = await parseForm(req, res);
     }

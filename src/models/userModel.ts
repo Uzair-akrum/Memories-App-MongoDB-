@@ -4,6 +4,11 @@ import Like from "./likeModel";
 import Post from "./postModel";
 import { IUser } from "../types/user";
 import hashed from "@root/utils/passwordHash";
+
+export interface UserDocument extends mongoose.Document {
+  createdAt: Date;
+  updatedAt: Date;
+}
 const userSchema = new mongoose.Schema<IUser>(
   {
     username: {
@@ -36,8 +41,8 @@ userSchema.pre(
   "deleteOne",
   { document: false, query: true },
   async function async(next) {
-     const id = this.getQuery()._id;
-     console.log("deleteMany", id);
+    const id = this.getQuery()._id;
+    console.log("deleteMany", id);
 
     await Post.deleteMany({ userid: id });
     await Comment.deleteMany({ userid: id });
@@ -46,7 +51,7 @@ userSchema.pre(
     next();
   }
 );
-userSchema.pre("save", async function (next) {
+userSchema.pre("save", async function (this: UserDocument, next) {
   if (this.isModified("password")) {
     const hash = await hashed(this.get("password"));
     this.set("password", hash);
@@ -54,7 +59,7 @@ userSchema.pre("save", async function (next) {
 
   next();
 });
-userSchema.pre("updateOne", async function (next) {
+userSchema.pre("updateOne", async function (this: UserDocument, next) {
   if (this.get("password")) {
     const hash = await hashed(this.get("password"));
     this.set("password", hash);

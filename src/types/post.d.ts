@@ -1,4 +1,3 @@
- 
 import { ObjectId } from "mongodb";
 
 interface IFields {
@@ -17,18 +16,15 @@ interface IFiles {
     originalFilename: string;
   };
 }
-interface IPost extends IFields, IFiles {
-
-}
+interface IPost extends IFields, IFiles {}
 interface IUserPost extends IPost {
   userid: ObjectId;
 }
- 
 
 interface IPostProgress {
   type: string;
-  bytesReceived: any;
-  bytesExpected: any;
+  bytesReceived: string;
+  bytesExpected: string;
 }
 
 interface IForm {
@@ -40,14 +36,14 @@ interface IForm {
 
   image1: {
     filepath: string;
-    name: string;
+    originalFilename: string;
   };
   image2: {
     filepath: string;
-    name: string;
+    originalFilename: string;
   };
 }
 interface IFormExt extends IForm {
   userid: string;
 }
-export { IPost, IUserPost, IPostProgress, IForm, IFormExt,IFields,IFiles };
+export { IPost, IUserPost, IPostProgress, IForm, IFormExt, IFields, IFiles };

@@ -5,9 +5,10 @@ import Like from "@root/models/likeModel";
 import { IResponseLocals } from "@root/types/user";
 import { IError } from "@root/types/error";
 import { IComment } from "@root/types/comment";
-
+import { IPost } from "@root/types/post";
+import { model } from "mongoose";
 import {
-  createPostService,
+  createPostService,  
   deletePostService,
   searchPostservice,
   updatePostService,

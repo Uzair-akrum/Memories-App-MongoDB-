@@ -88,10 +88,12 @@ const deleteCommentService = async (
 const unlikeService = async (
   userid: string,
   postid: string
-): Promise<IDelete> => {
-  return await Like.deleteOne({
+): Promise<number> => {
+  const { deletedCount } = await Like.deleteOne({
     $and: [{ userid: userid }, { postid: postid }],
   });
+
+  return deletedCount;
 };
 export {
   createPostService,

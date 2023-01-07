@@ -11,15 +11,12 @@ export const auth: RequestHandler = async (req, res, next) => {
       .header("Authorization")
       ?.replace("Bearer ", "")
       .slice(2, -1);
-
     if (!token) throw new Error();
-    const decoded:any= jwt.verify(token, jwtsec);
-    console.log(decoded);
+    const decoded = jwt.verify(token, jwtsec) as JwtPayload;
     res.locals = decoded;
 
     next();
   } catch (err) {
-    console.log(err);
     return response(res, 401, "Please Authenticate", false, [], true);
   }
 };
