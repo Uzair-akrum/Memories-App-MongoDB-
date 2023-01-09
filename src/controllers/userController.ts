@@ -58,7 +58,6 @@ const deleteUser: RequestHandler = async (req, res) => {
 
   try {
     const responseLocals: IResponseLocals = res.locals.data;
-    console.log(responseLocals.id, id);
     if (!responseLocals) throw new IError(404, "User not Found!");
 
     await deleteUserService(responseLocals.id);
