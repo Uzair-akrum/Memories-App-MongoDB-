@@ -68,7 +68,7 @@ const commentPostService = async (
   id: string,
   commentText: string,
   postid: string
-): Promise<any> => {
+): Promise<IComment> => {
   const comment = await Comment.create({
     userid: id,
     commentText,
